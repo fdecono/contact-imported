@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+
   resources :users
-  root to: 'users#index'
+
+  resources :contacts do
+    collection { post :import }
+  end
+
+  root to: 'contacts#index'
 end
