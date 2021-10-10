@@ -6,7 +6,7 @@ class ContactsController < ApplicationController
 
   def import
     ImportContactsFromCsv.for file: params[:file], user_id: current_user.id
-    redirect_to contacts_path, notice: 'Contacts uploaded successfully'
+    redirect_to contacts_path, notice: 'The system finished scanning the imported file'
   end
 
   def destroy
