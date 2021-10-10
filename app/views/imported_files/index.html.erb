@@ -1,22 +1,22 @@
-<h1>Error Logs</h1>
+<h1>Imported Files</h1>
 
 <div class="media">
   <div class="media-body">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Error</th>
-          <th>Contact information</th>
+          <th>File Name</th>
+          <th>Status</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <% @error_logs.each do |error_log| %>
+        <% @imported_files.each do |imported_file| %>
           <tr>
-            <td><%= error_log.error %></td>
-            <td><%= error_log.contact_info %></td>
+            <td><%= imported_file.file_name %></td>
+            <td><%= imported_file.status %></td>
           </tr>
         <% end %>
       </tbody>
@@ -26,4 +26,4 @@
 <br>
 <%= button_to 'Contacts', contacts_path, method: :get %>
 <br>
-<%= button_to 'Imported Files', imported_files_path, method: :get %>
+<%= button_to 'Error Logs', error_logs_path, method: :get %>
