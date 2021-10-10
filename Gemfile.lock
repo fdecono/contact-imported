@@ -122,6 +122,7 @@ GEM
     nokogiri (1.12.5-arm64-darwin)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (4.11.0)
     pg (1.2.3)
     public_suffix (4.0.6)
     puma (5.5.0)
@@ -253,6 +254,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  pagy
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

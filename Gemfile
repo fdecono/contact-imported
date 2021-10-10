@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'rexml', '~> 3.2', '>= 3.2.4'
+gem 'pagy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
