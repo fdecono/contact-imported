@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :error_logs
+  resources :imported_files
 
   resources :contacts do
     collection { post :import }

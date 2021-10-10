@@ -6,6 +6,7 @@ class ImportContactsFromCsv
   def initialize(file:, user_id:)
     @file = file
     @user_id = user_id
+    @previous_contacts = Contact.count
   end
 
   def execute
@@ -14,6 +15,7 @@ class ImportContactsFromCsv
       contact_info = row.to_hash.merge({user_id: @user_id})
       create_contacts_from_csv { Contact.create! contact_info }
     end
+    log_imported_file
   end
 
   private
@@ -26,6 +28,11 @@ class ImportContactsFromCsv
     yield
   rescue => e
     ErrorLog.create! user: user, error: e.message, contact_info: e.record.inspect
+  end
+
+  def log_imported_file
+    status = Contact.count > @previous_contacts ? 'Finished' : 'Failed'
+    ImportedFile.create! file_name: @file.original_filename, status: status, user: user
   end
 
   def user
