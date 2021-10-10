@@ -1,0 +1,27 @@
+<h1>Error Logs</h1>
+
+<div class="media">
+  <div class="media-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Error</th>
+          <th>Contact information</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @error_logs.each do |error_log| %>
+          <tr>
+            <td><%= error_log.error %></td>
+            <td><%= error_log.contact_info %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<%= button_to 'Contacts', contacts_path, method: :get %>

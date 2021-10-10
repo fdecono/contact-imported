@@ -9,15 +9,26 @@ class ImportContactsFromCsv
   end
 
   def execute
-    import_contacts
+    validate_file
+    CSV.foreach(@file.path, headers: true, header_converters: :symbol) do |row|
+      contact_info = row.to_hash.merge({user_id: @user_id})
+      create_contacts_from_csv { Contact.create! contact_info }
+    end
   end
 
   private
 
-  def import_contacts
-    CSV.foreach(@file.path, headers: true, header_converters: :symbol) do |row|
-      contact_info = row.to_hash.merge({user_id: @user_id})
-      Contact.create! contact_info
-    end
+  def validate_file
+    raise NoFileError, 'No file was uploaded' unless @file.present?
+  end
+
+  def create_contacts_from_csv
+    yield
+  rescue => e
+    ErrorLog.create! user: user, error: e.message, contact_info: e.record.inspect
+  end
+
+  def user
+    @user ||= User.find @user_id
   end
 end
