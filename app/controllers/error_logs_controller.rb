@@ -1,6 +1,6 @@
 class ErrorLogsController < ApplicationController
 
   def index
-    @error_logs = current_user.error_logs
+    @pagy, @error_logs = pagy(current_user.error_logs)
   end
 end

@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
 
   def index
-    @contacts = current_user.contacts
+    @pagy, @contacts = pagy(current_user.contacts)
   end
 
   def import
