@@ -27,11 +27,12 @@
           <tr>
             <td><%= contact.name %></td>
             <td><%= contact.email %></td>
-            <td><%= contact.date_of_birth %></td>
+            <td><%= contact.date_of_birth.strftime("%Y %B %d") %></td>
             <td><%= contact.telephone %></td>
             <td><%= contact.address %></td>
             <td><%= contact.credit_card_number.last(4) %></td>
             <td><%= contact.credit_card_franchise %></td>
+            <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>
@@ -44,6 +45,8 @@
 <h3>Import Contacts from CSV</h3>
 <%= form_with url: import_contacts_path, multipart: true do |form| %>
   <%= form.file_field :file %>
-  </br>
+  <br>
   <%= form.submit "Import Contacts" %>
 <% end %>
+<br>
+<%= button_to 'Error Logs', error_logs_path, method: :get %>
